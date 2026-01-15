@@ -22,7 +22,7 @@ function App() {
     username: "",
     password: "",
   });
-  const [isAuth, setisAuth] = useState(false);
+  const [isAuth, setIsAuth] = useState(false);
   const [products, setProducts] = useState([]);
   const [templateProduct, setTemplateProduct] = useState(INITIAL_TEMPLATE_DATA);
   const [ modalType, setModalType ] = useState(""); // 'create', 'edit', 'delete'
@@ -67,9 +67,9 @@ function App() {
   const checkAdmin = async () => {
     try {
       await axios.post(`${VITE_API_BASE}/api/user/check`);
-      setisAuth(true);
+      setIsAuth(true);
     } catch (err) {
-      setisAuth(false);
+      setIsAuth(false);
       console.log(err.response.data.message);
     }
   };
@@ -99,9 +99,9 @@ function App() {
       document.cookie = `hexToken=${token};expires=${new Date(expired)};`;
       axios.defaults.headers.common.Authorization = token;
       getProducts();
-      setisAuth(true);
+      setIsAuth(true);
     } catch (error) {
-      setisAuth(false);
+      setIsAuth(false);
       alert("登入失敗: " + error.response.data.message);
     }
   };
